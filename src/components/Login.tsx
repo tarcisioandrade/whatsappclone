@@ -1,4 +1,4 @@
-import { LOGIN_FACEBOOK } from "../Api";
+import { LOGIN_FACEBOOK } from "../../Api";
 import "./Login.css";
 
 interface LoginProps {

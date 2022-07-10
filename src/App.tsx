@@ -9,7 +9,7 @@ import ChatIntro from "./components/ChatIntro";
 import ChatWindow from "./components/ChatWindow";
 import NewChat from "./components/NewChat";
 import Login from "./components/Login";
-import { ADD_USER, ON_CHAT_LIST } from "./Api";
+import { ADD_USER, ON_CHAT_LIST } from "../Api";
 
 export interface ChatListProp {
   chatId: number;
