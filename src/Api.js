@@ -91,7 +91,23 @@ const ON_CHAT_LIST = (userId, setChatList) => {
     if (doc.exists) {
       const data = doc.data();
       if (data.chats) {
-        setChatList(data.chats);
+        const chats = [...data.chats];
+
+        chats.sort((a, b) => {
+          if (a.lastMessageDate === undefined) {
+            return -1;
+          }
+          if (b.lastMessageDate === undefined) {
+            return -1;
+          }
+          if (a.lastMessageDate.seconds < b.lastMessageDate.seconds) {
+            return 1;
+          } else {
+            return -1;
+          }
+        });
+
+        setChatList(chats);
       }
     }
   });

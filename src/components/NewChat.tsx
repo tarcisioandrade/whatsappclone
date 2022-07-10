@@ -1,6 +1,6 @@
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { useState, useEffect } from "react";
-import { ADD_NEW_CHAT, GET_CONTACT_LIST } from "../../Api";
+import { ADD_NEW_CHAT, GET_CONTACT_LIST } from "../Api";
 import { ChatListProp, UserType } from "../App";
 import "./NewChat.css";
 

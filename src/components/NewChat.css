@@ -1,8 +1,7 @@
 .newChat {
-  width: 35%;
+  width: 100%;
   max-width: 415px;
-  position: fixed;
-  left: 0;
+  position: absolute;
   top: 0;
   bottom: 0;
   background: #fff;
@@ -10,6 +9,7 @@
   flex-direction: column;
   border-right: 1px solid #ddd;
   transition: all ease .5s;
+  z-index: 100;
 }
 
 .newChat--head {

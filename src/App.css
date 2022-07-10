@@ -31,6 +31,8 @@ img {
   display: flex;
   flex-direction: column;
   border-right: 1px solid #ddd;
+  position: relative;
+  overflow-x: hidden;
 }
 
 header {
@@ -39,6 +41,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 0 15px;
+  position: relative;
 }
 
 .header--avatar {
@@ -60,6 +63,43 @@ header {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+}
+
+.header--dropdown {
+  position: absolute;
+  background-color: #ededed;
+  top: 60px;
+  box-shadow: 1px 1px 5px 1px rgb(0 0 0 / 12%);
+  right: 30px;
+  padding: 9px 0;
+  transition: all ease 0.3s;
+  overflow: hidden;
+  max-width: 174px;
+  height: 0%;
+  width: 0%;
+  opacity: 0;
+}
+
+.header--dropdown.active {
+  opacity: 1;
+  height: 173px;
+  width: 178px;
+}
+
+.header--menu {
+  list-style: none;
+}
+.header--menu li:hover {
+  background-color: #ccc;
+}
+
+.header--menu li a {
+  display: block;
+  text-decoration: none;
+  padding: 10px 20px;
+  color: #000;
+  font-size: 14.5px;
+  white-space: nowrap;
 }
 
 .search {

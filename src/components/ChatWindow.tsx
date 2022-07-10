@@ -11,7 +11,7 @@ import MessageItem from "./MessageItem";
 import { ChatListProp, UserType } from "../App";
 
 import "./ChatWindow.css";
-import { ON_CHAT_CONTENT, SEND_MESSAGE } from "../../Api";
+import { ON_CHAT_CONTENT, SEND_MESSAGE } from "../Api";
 
 export interface ListTypes {
   author: string;

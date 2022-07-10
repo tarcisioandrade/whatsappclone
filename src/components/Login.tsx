@@ -1,4 +1,4 @@
-import { LOGIN_FACEBOOK } from "../../Api";
+import { LOGIN_FACEBOOK } from "../Api";
 import "./Login.css";
 
 interface LoginProps {
@@ -17,7 +17,7 @@ const Login = ({ onReceive }: LoginProps) => {
   };
   return (
     <div className="login">
-      <button onClick={handleFacebookLogin}>Logar com Facebook</button>
+      <button className="login--button" onClick={handleFacebookLogin}>Logar com Facebook</button>
     </div>
   );
 };

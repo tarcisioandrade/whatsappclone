@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-, "Api.js", "firebaseConfig.js"  ]
+, "src/Api.jssrc/firebaseConfig.jsg.js"  ]
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import DonutLargeIcon from "@material-ui/icons/DonutLarge";
 import ChatIcon from "@material-ui/icons/Chat";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
@@ -9,7 +9,7 @@ import ChatIntro from "./components/ChatIntro";
 import ChatWindow from "./components/ChatWindow";
 import NewChat from "./components/NewChat";
 import Login from "./components/Login";
-import { ADD_USER, ON_CHAT_LIST } from "../Api";
+import { ADD_USER, ON_CHAT_LIST } from "./Api";
 
 export interface ChatListProp {
   chatId: number;
@@ -37,12 +37,10 @@ interface UserFacebookProps {
 function App() {
   const [chatList, setChatList] = useState<ChatListProp[]>([]);
   const [activeChat, setActiveChat] = useState<ChatListProp>();
-  const [user, setUser] = useState<UserType | null>({
-    id: "5sCNlDzYiFWz0mKxBaOtAvgyIZy1",
-    avatar: "https://graph.facebook.com/2008684342674691/picture",
-    name: "Tarcisio Andrade",
-  });
+  const [user, setUser] = useState<UserType | null>(null);
   const [showNewChat, setShowNewChat] = useState<boolean>(false);
+  const [showDropdown, setShowDropdown] = useState<boolean>(false);
+  const MoreVertRef = useRef<any>();
 
   const handleLoginData = async (user: UserFacebookProps) => {
     let newUser = {
@@ -54,12 +52,34 @@ function App() {
     setUser(newUser);
   };
 
+  const handleUserLogout = () => {
+    setUser(null);
+  };
+
+  const handleShowDropdown = () => {
+    setShowDropdown(!showDropdown);
+  };
+
   useEffect(() => {
     if (user !== null) {
       const unsub = ON_CHAT_LIST(user.id, setChatList);
       return unsub;
     }
   }, [user]);
+
+  const outsideClickHandleDropdown = (e: any) => {
+    if (!e.target.contains(MoreVertRef.current)) {
+      setShowDropdown(false);
+    }
+  };
+
+  useEffect(() => {
+    const bodyEL = document.body;
+    bodyEL.addEventListener("click", outsideClickHandleDropdown);
+
+    return () =>
+      bodyEL.removeEventListener("click", outsideClickHandleDropdown);
+  }, []);
 
   if (user === null) return <Login onReceive={handleLoginData} />;
   return (
@@ -80,8 +100,26 @@ function App() {
             <div className="header--btn" onClick={() => setShowNewChat(true)}>
               <ChatIcon style={{ color: "#919191" }} />
             </div>
-            <div className="header--btn">
-              <MoreVertIcon style={{ color: "#919191" }} />
+            <div className="header--btn" onClick={handleShowDropdown}>
+              <MoreVertIcon ref={MoreVertRef} style={{ color: "#919191" }} />
+            </div>
+            <div className={`header--dropdown ${showDropdown ? "active" : ""}`}>
+              <ul className="header--menu">
+                <li>
+                  <a href=".">Novo Grupo</a>
+                </li>
+                <li>
+                  <a href=".">Mensagens Favoritas</a>
+                </li>
+                <li>
+                  <a href=".">Configurações</a>
+                </li>
+                <li>
+                  <a onClick={handleUserLogout} href=".">
+                    Desconectar
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
         </header>
