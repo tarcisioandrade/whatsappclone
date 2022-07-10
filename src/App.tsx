@@ -90,6 +90,7 @@ function App() {
           setShow={setShowNewChat}
           user={user}
           chatList={chatList}
+          setActiveChat={setActiveChat}
         />
         <header>
           <img className="header--avatar" src={user.avatar} alt="" />

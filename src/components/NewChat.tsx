@@ -9,8 +9,15 @@ interface NewChatProps {
   setShow: Function;
   user: UserType;
   chatList: ChatListProp[];
+  setActiveChat: Function;
 }
-const NewChat = ({ show, setShow, user, chatList }: NewChatProps) => {
+const NewChat = ({
+  show,
+  setShow,
+  user,
+  chatList,
+  setActiveChat,
+}: NewChatProps) => {
   const [list, setList] = useState<UserType[]>([]);
 
   useEffect(() => {
@@ -28,10 +35,17 @@ const NewChat = ({ show, setShow, user, chatList }: NewChatProps) => {
   };
 
   const addNewChat = async (user2: UserType) => {
-    await ADD_NEW_CHAT(user, user2);
-
-    handleClose()
-  }
+    const auth = chatList
+      .map((chat) => chat.title.includes(user2.name))
+      .includes(true);
+    if (!auth) {
+      await ADD_NEW_CHAT(user, user2);
+    } else {
+      const chat = chatList.filter((chat) => chat.title === user2.name);
+      setActiveChat(chat[0]);
+    }
+    handleClose();
+  };
 
   return (
     <div className="newChat" style={{ left: show ? "0" : "-415px" }}>
@@ -43,7 +57,11 @@ const NewChat = ({ show, setShow, user, chatList }: NewChatProps) => {
       </div>
       <div className="newChat-list">
         {list.map((item, key) => (
-          <div onClick={() => addNewChat(item)} className="newChat--item" key={key}>
+          <div
+            onClick={() => addNewChat(item)}
+            className="newChat--item"
+            key={key}
+          >
             <img className="newChat--itemavatar" src={item.avatar} alt="" />
             <div className="newChat--itemname">{item.name}</div>
           </div>
