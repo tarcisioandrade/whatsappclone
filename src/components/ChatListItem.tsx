@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ChatListProp } from "../App";
+
 import "./ChatListItem.css";
 
 type ChatProps = {

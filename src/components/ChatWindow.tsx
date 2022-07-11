@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from "react";
+import { ChatListProp, UserType } from "../App";
+import { ON_CHAT_CONTENT, SEND_MESSAGE } from "../Api";
 import SearchIcon from "@material-ui/icons/Search";
 import AttachFileIcon from "@material-ui/icons/AttachFile";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
@@ -8,10 +10,8 @@ import SendIcon from "@material-ui/icons/Send";
 import MicIcon from "@material-ui/icons/Mic";
 import EmojiPicker from "emoji-picker-react";
 import MessageItem from "./MessageItem";
-import { ChatListProp, UserType } from "../App";
 
 import "./ChatWindow.css";
-import { ON_CHAT_CONTENT, SEND_MESSAGE } from "../Api";
 
 export interface ListTypes {
   author: string;

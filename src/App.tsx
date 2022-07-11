@@ -1,15 +1,16 @@
 import { useEffect, useRef, useState } from "react";
+import { ADD_USER, ON_CHAT_LIST } from "./Api";
 import DonutLargeIcon from "@material-ui/icons/DonutLarge";
 import ChatIcon from "@material-ui/icons/Chat";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import SearchIcon from "@material-ui/icons/Search";
-import "./App.css";
 import ChatListItem from "./components/ChatListItem";
 import ChatIntro from "./components/ChatIntro";
 import ChatWindow from "./components/ChatWindow";
 import NewChat from "./components/NewChat";
 import Login from "./components/Login";
-import { ADD_USER, ON_CHAT_LIST } from "./Api";
+
+import "./App.css";
 
 export interface ChatListProp {
   chatId: number;

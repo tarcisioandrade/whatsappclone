@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { UserType } from "../App";
 import { ListTypes } from "./ChatWindow";
+
 import "./MessageItem.css";
 
 interface MessageType {
